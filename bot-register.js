@@ -21,6 +21,41 @@ module.exports = () => {
     /help - 显示帮助。
     `), $.defTgMsgForm);
     });
+    $.bot.on('text',msg=>{
+        if(msg.text.toString().startsWith('❌  ')){
+            let username=msg.text.toString().slice(3).trim();
+            let vtb=dbm.getVtbByUsername(username);
+            if(!vtb){
+                $.bot.sendMessage(msg.chat.id,'不存在主播 `'+username+'`',$.defTgMsgForm);
+                return;
+            }
+            dbm.delWatch(msg.chat.id,vtb.mid);
+            $.bot.sendMessage(msg.chat.id,'已删除主播 `'+vtb.username+'`。',$.defTgMsgForm);
+        }
+    });
+    $.bot.onText(/^\/del$/,msg=>{
+        let watches=dbm.getWatchByChatid(msg.chat.id);
+        if(!watches.length){
+            $.bot.sendMessage(msg.chat.id,'您的监控列表为空。',$.defTgMsgForm);
+            return;
+        }
+        let keyboard=[];
+        let step=0;
+        for(let watch of watches){
+            if(step==0){
+                keyboard.push(['❌  '+watch.username]);
+                step=1;
+            }else{
+                keyboard[keyboard.length-1].push('❌  '+watch.username);
+                step=0;
+            }
+        }
+        $.bot.sendMessage(msg.chat.id,'请在弹出的键盘中选择需要删除的主播。',{
+            reply_markup:{
+                keyboard:keyboard
+            }
+        });
+    });
     $.bot.onText(/\/del (.+)/,(msg,match)=>{
         let mid=match[1].toString().trim();
         if(!$.isInt(mid)){

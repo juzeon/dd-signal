@@ -17,7 +17,10 @@ const includes={
     },
     defTgMsgForm:{
         parse_mode:'Markdown',
-        disable_web_page_preview:true
+        disable_web_page_preview:true,
+        reply_markup:{
+            remove_keyboard:true
+        }
     },
     axios:axios.create({
         timeout:15000

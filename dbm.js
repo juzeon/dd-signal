@@ -38,6 +38,9 @@ module.exports={
             $.emitter.emit('updateVtbs');
         }
     },
+    getVtbByUsername(username){
+        return db.prepare('select * from vtbs where username=?').get(username);
+    },
     getVtbs(){
         return db.prepare('select * from vtbs').all();
     },
