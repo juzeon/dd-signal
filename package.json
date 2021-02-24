@@ -1,11 +1,10 @@
 {
-  "name": "node-dd-signal",
+  "name": "dd-signal",
   "version": "1.0.0",
-  "description": "",
+  "description": "监控多个B站主播的直播状态，并发送开播、下播提醒消息的Telegram Bot。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --use_strict ./index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "juzeon",
