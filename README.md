@@ -11,10 +11,6 @@
 - 同时监控多个B站主播的直播状态
 - 通过Telegram Bot原生方式添加、删除监控列表的。
 
-## 演示
-
-
-
 ## 部署
 
 以在Linux上安装为例。
@@ -45,3 +41,24 @@ node ./index.js --token "您的Telegram Bot API Token"
 --proxy <HTTPProxy> - 可选，以 http:// 开头的代理
 ```
 
+## 演示
+
+帮助：
+
+![](https://img13.360buyimg.com/ddimg/jfs/t1/158410/5/8612/81577/60366c58E69fff984/6b1a08cbba2bac08.png)
+
+添加：
+
+![](https://img12.360buyimg.com/ddimg/jfs/t1/166397/24/8126/160428/60366d3fE3f90e563/7b038365b7d299ac.png)
+
+删除：
+
+![](https://img13.360buyimg.com/ddimg/jfs/t1/164949/9/7559/52221/60366e26E07c22446/bd11a3dca158c21f.png)
+
+列表：
+
+![](https://img10.360buyimg.com/ddimg/jfs/t1/168344/38/7845/126065/60366ef9E316cec24/954bb30110188d63.png)
+
+开播、下播提醒：
+
+![](https://img10.360buyimg.com/ddimg/jfs/t1/170050/11/7723/15309/60366fabE9e17d285/c4852b6b8c534c7d.png)
