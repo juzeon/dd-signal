@@ -45,6 +45,7 @@ $.emitter.on('updateVtbs', () => {
     vtbs=dbm.getVtbs();
     console.log('Reloaded Vtbs.');
 });
+console.log('dd-signal 已启动！');
 async function notifySubscriberChats(vtb){
     console.log('Let\'s notify subscribers about '+vtb.username);
     let head='`'+vtb.username+'` '+(vtb.liveStatus?'开播啦！':'下播了。')+'\n\n';
@@ -85,6 +86,9 @@ async function notifySubscriberChats(vtb){
             vtb.liveStatus=resp.data.data.live_room.liveStatus;
             notifySubscriberChats(vtb);
         }
+        await $.sleep(interval * 1000);
+    }
+    if(!vtbs.length){
         await $.sleep(interval * 1000);
     }
     setImmediate(rotate);

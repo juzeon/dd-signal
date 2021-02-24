@@ -4,7 +4,7 @@
 
 >  这个机器人可以帮助早已把Telegram作为日常摸鱼工具的你dd一堆vtubers，解决B站客户端自带开播提醒基本没法用的问题。
 
-我搭建的公开机器人：[@dd_signal_bot](https://t.me/@dd_signal_bot)
+我搭建的公开机器人：[@dd_signal_bot](https://t.me/dd_signal_bot)
 
 ## 特性
 
@@ -19,9 +19,11 @@
 
 以在Linux上安装为例。
 
-1.安装Node.js和npm。[教程](https://nodejs.org/en/download/package-manager/)。
+1.通过[@BotFather](https://t.me/BotFather)申请机器人，并记录`Telegram Bot API Token`。
 
-2.拉取本项目，并安装依赖。
+2.安装Node.js和npm。[教程](https://nodejs.org/en/download/package-manager/)。
+
+3.拉取本项目，并安装依赖。
 
 ```bash
 git clone https://github.com/juzeon/dd-signal.git
@@ -29,7 +31,7 @@ cd dd-signal/
 npm install
 ```
 
-3.运行程序。
+4.运行程序。
 
 ```bash
 node ./index.js --token "您的Telegram Bot API Token"
