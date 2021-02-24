@@ -34,7 +34,8 @@ const includes={
         for(let vtb of arr){
             str+=vtb.liveStatus?'🟢  ':'🔴  ';
             str+='`'+vtb.username+'`';
-            str+='  `'+vtb.mid+'`\n';
+            //str+='  `'+vtb.mid+'`\n';
+            str+='\n';
             str+=vtb.liveStatus?'👉▶️  ['+vtb.title+'](https://live.bilibili.com/'+vtb.roomid+')\n':'';
         }
         return str;
