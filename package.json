@@ -1,0 +1,21 @@
+{
+  "name": "node-dd-signal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --use_strict ./index.js"
+  },
+  "keywords": [],
+  "author": "juzeon",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "better-sqlite3": "^7.1.2",
+    "minimist": "^1.2.5",
+    "node-telegram-bot-api": "^0.51.0",
+    "strip-indent": "^3.0.0",
+    "url-parse": "^1.5.1"
+  }
+}
