@@ -17,6 +17,7 @@ module.exports = () => {
           /add 375504219
           /add https://live.bilibili.com/14917277
     /del \`<ID>\` - 将ID对应的主播移出监控列表。
+      tip. 您可以只输入\`/del\`，然后在弹出的键盘中选择需要删除的主播。
     /list - 查看您的监控列表。
     /help - 显示帮助。
     `), $.defTgMsgForm);
