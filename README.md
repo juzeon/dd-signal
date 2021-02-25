@@ -49,11 +49,15 @@ node ./index.js --token "您的Telegram Bot API Token"
 
 帮助：
 
-![](https://i.imgur.com/rEdUym7.png)
+![](https://i.imgur.com/QKtSPe1.jpg)
 
 添加：
 
 ![](https://i.imgur.com/Jtn0Gbt.png)
+
+搜索：
+
+![](https://i.imgur.com/qlgOUw2.jpg)
 
 删除：
 
@@ -65,4 +69,4 @@ node ./index.js --token "您的Telegram Bot API Token"
 
 开播、下播提醒：
 
-![](https://i.imgur.com/tgZN5kq.png)
+![](https://i.imgur.com/1gYA7MX.jpg)
