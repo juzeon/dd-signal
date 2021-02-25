@@ -45,7 +45,7 @@ node ./index.js --token "您的Telegram Bot API Token"
 
 帮助：
 
-![](https://img13.360buyimg.com/ddimg/jfs/t1/158410/5/8612/81577/60366c58E69fff984/6b1a08cbba2bac08.png)
+![](https://img11.360buyimg.com/ddimg/jfs/t1/159010/22/8547/76071/60371d58E0a373bfe/6e757d351feacaa2.png)
 
 添加：
 
@@ -53,7 +53,7 @@ node ./index.js --token "您的Telegram Bot API Token"
 
 删除：
 
-![](https://img13.360buyimg.com/ddimg/jfs/t1/164949/9/7559/52221/60366e26E07c22446/bd11a3dca158c21f.png)
+![](https://img10.360buyimg.com/ddimg/jfs/t1/150438/16/21013/58240/60371cf1Eb86ef6a5/41daf2bf461380df.png)
 
 列表：
 
