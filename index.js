@@ -1,6 +1,8 @@
 process.env["NTBA_FIX_319"] = 1;
 const args = require('minimist')(process.argv.slice(2));
 const urlParse = require('url-parse');
+const fs=require('fs');
+const path=require('path');
 const $ = require('./includes');
 const botRegister = require('./bot-register');
 const dbm = require('./dbm');
@@ -96,14 +98,27 @@ async function notifySubscriberChats(vtb){
     }
     setImmediate(rotate);
 })();
-// (async function updateVtbsMoeList(){
-//     let promise=$.axios.get('https://api.vtbs.moe/v1/info')
-//         .then(resp=>{
-//             $.vtbsMoeList=resp.data;
-//             console.log('updateVtbsMoeList() ok.');
-//         })
-//         .catch(err=>console.error('updateVtbsMoeList() Network Error: '+err));
-//     await Promise.all([promise]);
-//     await $.sleep(60*60*1000);
-//     setImmediate(updateVtbsMoeList);
-// })();
+(async function loadVtbList(){
+    let json=JSON.parse(fs.readFileSync(path.join(__dirname,'vtbs.json')));
+    for(let vtb of json.vtbs){
+        if(vtb.type!='vtuber'){
+            continue;
+        }
+        let username=vtb.name[vtb.name.default];
+        let mid;
+        for(let account of vtb.accounts){
+            if(account.platform=='bilibili'){
+                mid=account.id;
+                break;
+            }
+        }
+        if(!mid){
+            continue;
+        }
+        $.vtbList.push({
+            mid:mid,
+            username:username
+        });
+    }
+    console.log('Loaded '+json.vtbs.length+' vtubers');
+})();

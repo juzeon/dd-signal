@@ -16,7 +16,8 @@ module.exports = () => {
       eg. /add https://space.bilibili.com/375504219
           /add 375504219
           /add https://live.bilibili.com/14917277
-    /del 输入后，在弹出的键盘中选择需要删除的主播。
+    /search <关键词> - 搜索Vtubers列表。
+    /del - 输入后，在弹出的键盘中选择需要删除的主播。
     /list - 查看您的监控列表。
     /help - 显示帮助。
     `), $.defTgMsgForm);
@@ -33,12 +34,32 @@ module.exports = () => {
             $.bot.sendMessage(msg.chat.id,'已删除主播 `'+vtb.username+'`。',$.defTgMsgForm);
         }else if(msg.text.toString()=='取消'){
             $.bot.sendMessage(msg.chat.id,'取消当前操作。',$.defTgMsgForm);
+        }else if(msg.text.toString().startsWith('❤️  ')){
+            let username=msg.text.toString().slice(3).trim();
+            let vtbList=$.vtbList.filter(vtb=>vtb.username==username);
+            if(!vtbList.length){
+                $.bot.sendMessage(msg.chat.id,'不存在主播 `'+username+'`',$.defTgMsgForm);
+                return;
+            }
+            _addWatchByMid(msg,vtbList[0].mid);
         }
     });
-    // $.bot.onText(/\/search (.+)/,(msg,match)=>{
-    //     let searchText=match[1].toString().trim();
-    //
-    // });
+    $.bot.onText(/\/search (.+)/,(msg,match)=>{
+        let searchText=match[1].toString().trim().toLowerCase();
+        let arr=$.vtbList.filter(vtb=>vtb.username.toLowerCase().includes(searchText));
+        if(!arr.length){
+            $.bot.sendMessage(msg.chat.id,'未找到符合搜索关键词的Vtubers。',$.defTgMsgForm);
+            return;
+        }
+        arr=arr.map(vtb=>"❤️  "+vtb.username);
+        arr.push('取消');
+        let keyboard=$.formatTgKeyboard(arr);
+        $.bot.sendMessage(msg.chat.id,'已为您搜索到'+(arr.length-1)+'个Vtubers。\n请在弹出的键盘中选择需要添加的主播。',{
+            reply_markup:{
+                keyboard:keyboard
+            }
+        });
+    });
     $.bot.onText(/^\/del$/,msg=>{
         let watches=dbm.getWatchByChatid(msg.chat.id);
         if(!watches.length){
@@ -51,8 +72,7 @@ module.exports = () => {
 
         $.bot.sendMessage(msg.chat.id,'请在弹出的键盘中选择需要删除的主播。',{
             reply_markup:{
-                keyboard:keyboard,
-                one_time_keyboard:true
+                keyboard:keyboard
             }
         });
     });
@@ -105,23 +125,30 @@ module.exports = () => {
                 return;
             }
         }
-        if(dbm.existsWatch(msg.chat.id,mid)){
-            $.bot.sendMessage(msg.chat.id,'该主播已在您的监控列表中。');
-            return;
-        }
-        $.axios.get('https://api.bilibili.com/x/space/acc/info?mid='+mid).then(resp=>{
-            if(resp.data.code){
-                $.bot.sendMessage(msg.chat.id,resp.data.msg,$.defTgMsgForm);
-                return;
-            }
-            dbm.addVtbToWatch(msg.chat.id,mid,
-                resp.data.data.live_room.roomid,
-                resp.data.data.name,
-                resp.data.data.live_room.liveStatus,
-                resp.data.data.live_room.title);
-            $.bot.sendMessage(msg.chat.id,'已添加主播 `'+resp.data.data.name+'`。',$.defTgMsgForm);
-        }).catch(err=>{
-            $.bot.sendMessage(msg.chat.id,$.template.networkError,$.defTgMsgForm);
-        });
+        _addWatchByMid(msg,mid);
     });
 };
+function _addWatchByMid(msg,mid){
+    if(dbm.existsWatch(msg.chat.id,mid)){
+        $.bot.sendMessage(msg.chat.id,'该主播已在您的监控列表中。',$.defTgMsgForm);
+        return;
+    }
+    $.axios.get('https://api.bilibili.com/x/space/acc/info?mid='+mid).then(resp=>{
+        if(resp.data.code){
+            $.bot.sendMessage(msg.chat.id,resp.data.msg,$.defTgMsgForm);
+            return;
+        }
+        if(!resp.data.data.live_room.roomid){
+            $.bot.sendMessage(msg.chat.id,'该用户未开通直播间。',$.defTgMsgForm);
+            return;
+        }
+        dbm.addVtbToWatch(msg.chat.id,mid,
+            resp.data.data.live_room.roomid,
+            resp.data.data.name,
+            resp.data.data.live_room.liveStatus,
+            resp.data.data.live_room.title);
+        $.bot.sendMessage(msg.chat.id,'已添加主播 `'+resp.data.data.name+'`。',$.defTgMsgForm);
+    }).catch(err=>{
+        $.bot.sendMessage(msg.chat.id,$.template.networkError,$.defTgMsgForm);
+    });
+}
