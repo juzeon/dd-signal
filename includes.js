@@ -40,6 +40,20 @@ const includes={
         }
         return str;
     },
-    emitter:new EventEmitter()
+    emitter:new EventEmitter(),
+    formatTgKeyboard(arr){
+        let keyboard=[];
+        let step=0;
+        for(let item of arr){
+            if(step==0){
+                keyboard.push([item]);
+                step=1;
+            }else{
+                keyboard[keyboard.length-1].push(item);
+                step=0;
+            }
+        }
+        return keyboard;
+    }
 };
 module.exports=includes;

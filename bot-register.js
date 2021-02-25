@@ -31,6 +31,8 @@ module.exports = () => {
             }
             dbm.delWatch(msg.chat.id,vtb.mid);
             $.bot.sendMessage(msg.chat.id,'已删除主播 `'+vtb.username+'`。',$.defTgMsgForm);
+        }else if(msg.text.toString()=='取消'){
+            $.bot.sendMessage(msg.chat.id,'取消当前操作。',$.defTgMsgForm);
         }
     });
     $.bot.onText(/^\/del$/,msg=>{
@@ -39,20 +41,14 @@ module.exports = () => {
             $.bot.sendMessage(msg.chat.id,'您的监控列表为空。',$.defTgMsgForm);
             return;
         }
-        let keyboard=[];
-        let step=0;
-        for(let watch of watches){
-            if(step==0){
-                keyboard.push(['❌  '+watch.username]);
-                step=1;
-            }else{
-                keyboard[keyboard.length-1].push('❌  '+watch.username);
-                step=0;
-            }
-        }
+        let plainWatchArr=watches.map(item=>'❌  '+item.username);
+        plainWatchArr.push('取消');
+        let keyboard=$.formatTgKeyboard(plainWatchArr);
+
         $.bot.sendMessage(msg.chat.id,'请在弹出的键盘中选择需要删除的主播。',{
             reply_markup:{
-                keyboard:keyboard
+                keyboard:keyboard,
+                one_time_keyboard:true
             }
         });
     });
