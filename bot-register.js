@@ -16,7 +16,7 @@ module.exports = () => {
       eg. /add https://space.bilibili.com/375504219
           /add 375504219
           /add https://live.bilibili.com/14917277
-    /search <关键词> - 搜索Vtubers列表。
+    /search \`<关键词>\` - 搜索Vtubers列表。
     /del - 输入后，在弹出的键盘中选择需要删除的主播。
     /list - 查看您的监控列表。
     /help - 显示帮助。
