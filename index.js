@@ -50,10 +50,13 @@ async function notifySubscriberChats(vtb){
     console.log('Let\'s notify subscribers about '+vtb.username);
     let head='`'+vtb.username+'` '+(vtb.liveStatus?'开播啦！':'下播了。')+'\n\n';
     let watches=dbm.getWatchByMid(vtb.mid);
-    for(let watch of watches){
+    for(let [index,watch] of watches.entries()){
         console.log(watch.chatid);
         let body=$.formatWatchMessagePartial(dbm.getWatchByChatid(watch.chatid));
-        $.bot.sendMessage(watch.chatid,head+body,$.defTgMsgForm);
+        await $.bot.sendMessage(watch.chatid,head+body,$.defTgMsgForm);
+        if(index%20==0 && index!=0){
+            await $.sleep(1000);
+        }
     }
 }
 (async function rotate() {
