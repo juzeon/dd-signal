@@ -2,6 +2,8 @@
 
 # dd-signal
 
+[LOGO图来源](https://www.zedge.net/wallpaper/b944d4d5-c2e8-42ca-9903-7dc2d4aa7ad6)
+
 监控多个B站主播的直播状态，并发送开播、下播提醒消息的Telegram Bot。
 
 >  这个机器人可以帮助早已把Telegram作为日常摸鱼工具的你dd一堆vtubers，解决B站客户端自带开播提醒基本没法用的问题。
