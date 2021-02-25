@@ -49,20 +49,20 @@ node ./index.js --token "您的Telegram Bot API Token"
 
 帮助：
 
-![](https://img11.360buyimg.com/ddimg/jfs/t1/159010/22/8547/76071/60371d58E0a373bfe/6e757d351feacaa2.png)
+![](https://i.imgur.com/rEdUym7.png)
 
 添加：
 
-![](https://img12.360buyimg.com/ddimg/jfs/t1/166397/24/8126/160428/60366d3fE3f90e563/7b038365b7d299ac.png)
+![](https://i.imgur.com/Jtn0Gbt.png)
 
 删除：
 
-![](https://img10.360buyimg.com/ddimg/jfs/t1/150438/16/21013/58240/60371cf1Eb86ef6a5/41daf2bf461380df.png)
+![](https://i.imgur.com/9OjNMHF.png)
 
 列表：
 
-![](https://img10.360buyimg.com/ddimg/jfs/t1/168344/38/7845/126065/60366ef9E316cec24/954bb30110188d63.png)
+![](https://i.imgur.com/Fjsd6ic.png)
 
 开播、下播提醒：
 
-![](https://img10.360buyimg.com/ddimg/jfs/t1/170050/11/7723/15309/60366fabE9e17d285/c4852b6b8c534c7d.png)
+![](https://i.imgur.com/tgZN5kq.png)
