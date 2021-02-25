@@ -35,6 +35,10 @@ module.exports = () => {
             $.bot.sendMessage(msg.chat.id,'取消当前操作。',$.defTgMsgForm);
         }
     });
+    // $.bot.onText(/\/search (.+)/,(msg,match)=>{
+    //     let searchText=match[1].toString().trim();
+    //
+    // });
     $.bot.onText(/^\/del$/,msg=>{
         let watches=dbm.getWatchByChatid(msg.chat.id);
         if(!watches.length){

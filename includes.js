@@ -54,6 +54,7 @@ const includes={
             }
         }
         return keyboard;
-    }
+    },
+    vtbsMoeList:[]
 };
 module.exports=includes;

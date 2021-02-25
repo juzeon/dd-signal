@@ -93,3 +93,14 @@ async function notifySubscriberChats(vtb){
     }
     setImmediate(rotate);
 })();
+// (async function updateVtbsMoeList(){
+//     let promise=$.axios.get('https://api.vtbs.moe/v1/info')
+//         .then(resp=>{
+//             $.vtbsMoeList=resp.data;
+//             console.log('updateVtbsMoeList() ok.');
+//         })
+//         .catch(err=>console.error('updateVtbsMoeList() Network Error: '+err));
+//     await Promise.all([promise]);
+//     await $.sleep(60*60*1000);
+//     setImmediate(updateVtbsMoeList);
+// })();
