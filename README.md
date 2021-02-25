@@ -1,3 +1,5 @@
+![dd-signal](https://socialify.git.ci/juzeon/dd-signal/image?description=1&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fimg14.360buyimg.com%2Fddimg%2Fjfs%2Ft1%2F168143%2F5%2F7773%2F27490%2F603723edE7b9ecb4d%2Fd125f3119c9024f4.jpg&pattern=Plus&stargazers=1&theme=Light)
+
 # dd-signal
 
 监控多个B站主播的直播状态，并发送开播、下播提醒消息的Telegram Bot。
