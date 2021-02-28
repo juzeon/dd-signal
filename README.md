@@ -46,6 +46,19 @@ node ./index.js --token "您的Telegram Bot API Token"
 --proxy <HTTPProxy> - 可选，以 http:// 开头的代理
 ```
 
+### 后台运行
+
+您可以使用pm2后台运行程序。
+
+```bash
+npm install pm2 -g
+# 在「--」之后，传入任何node参数
+pm2 start ./index.js -- --token "您的Telegram Bot API Token"
+pm2 logs
+```
+
+pm2使用教程参考：<https://juejin.cn/post/6844903710037016584>
+
 ## 演示
 
 帮助：

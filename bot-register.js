@@ -30,6 +30,10 @@ module.exports = () => {
                 $.bot.sendMessage(msg.chat.id,'不存在主播 `'+username+'`',$.defTgMsgForm);
                 return;
             }
+            if(!dbm.existsWatch(msg.chat.id,vtb.mid)){
+                $.bot.sendMessage(msg.chat.id,'该主播不在您的监控列表中。',$.defTgMsgForm);
+                return;
+            }
             dbm.delWatch(msg.chat.id,vtb.mid);
             $.bot.sendMessage(msg.chat.id,'已删除主播 `'+vtb.username+'`。',$.defTgMsgForm);
         }else if(msg.text.toString()=='取消'){
