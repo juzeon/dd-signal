@@ -77,6 +77,11 @@ async function notifySubscriberChats(vtb){
             await $.sleep(interval * 1000);
             continue;
         }
+        if(!resp.data.data.live_room){// temporary fix
+            console.log('Error: '+resp.data.data);
+            await $.sleep(interval * 1000);
+            continue;
+        }
         console.log(vtb.username+': liveStatus='+resp.data.data.live_room.liveStatus);
         if(resp.data.data.name!=vtb.username){
             dbm.updateVtbColumn('username',resp.data.data.name,vtb.mid);
