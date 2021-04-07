@@ -3,9 +3,11 @@ const args = require('minimist')(process.argv.slice(2));
 const urlParse = require('url-parse');
 const fs=require('fs');
 const path=require('path');
+const nodeGlobalProxy = require("node-global-proxy").default;
 const $ = require('./includes');
 const botRegister = require('./bot-register');
 const dbm = require('./dbm');
+
 
 
 const helpText = `
@@ -27,18 +29,21 @@ if (!token) {
 $.bot.token = token;
 const proxy = args.proxy;
 if (proxy) {
-    proxyUrlObj = urlParse(proxy, true);
+    let proxyUrlObj = urlParse(proxy, true);
     if (proxyUrlObj.protocol != 'http:') {
         console.log('--proxy 只支持HTTP PROXY');
         process.exit(-1);
     }
-    $.bot.options.request = {
-        proxy: proxy
-    };
-    $.axios.defaults.proxy = {
-        host: proxyUrlObj.hostname,
-        port: proxyUrlObj.port
-    };
+    nodeGlobalProxy.setConfig(proxy);
+    nodeGlobalProxy.start();
+    // $.bot.options.request = {
+    //     proxy: proxy
+    // };
+    // $.axios.defaults.proxy = {
+    //     host: proxyUrlObj.hostname,
+    //     port: proxyUrlObj.port
+    // };
+
 }
 botRegister();
 $.bot.startPolling();
@@ -103,8 +108,17 @@ async function notifySubscriberChats(vtb){
     }
     setImmediate(rotate);
 })();
-(async function loadVtbList(){
-    let json=JSON.parse(fs.readFileSync(path.join(__dirname,'vtbs.json')));
+(async function updateVtbList(){
+    let resp;
+    try {
+        resp = await $.axios.get('https://vdb.vtbs.moe/json/list.json');
+    }catch(err){
+        console.error('Network Error: '+err);
+        await $.sleep(interval * 1000);
+        setImmediate(updateVtbList);
+    }
+    $.vtbList=[];
+    let json=resp.data;
     for(let vtb of json.vtbs){
         if(vtb.type!='vtuber'){
             continue;
@@ -126,4 +140,6 @@ async function notifySubscriberChats(vtb){
         });
     }
     console.log('Loaded '+json.vtbs.length+' vtubers');
+    await $.sleep(30*60*1000);
+    setImmediate(updateVtbList);
 })();

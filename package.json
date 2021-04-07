@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "better-sqlite3": "^7.1.2",
     "minimist": "^1.2.5",
+    "node-global-proxy": "^1.0.1",
     "node-telegram-bot-api": "^0.51.0",
     "strip-indent": "^3.0.0",
     "url-parse": "^1.5.1"
