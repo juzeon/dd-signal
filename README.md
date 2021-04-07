@@ -2,7 +2,7 @@
 
 # dd-signal
 
-[LOGO图来源](https://www.zedge.net/wallpaper/b944d4d5-c2e8-42ca-9903-7dc2d4aa7ad6)
+[LOGO图来源](https://www.pixiv.net/artworks/84891983)
 
 监控多个B站主播的直播状态，并发送开播、下播提醒消息的Telegram Bot。
 
